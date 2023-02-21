@@ -19,4 +19,7 @@ import org.khasanof.smsp.service.GenericGLService;
  */
 public interface OrganizationService extends GenericCUDService<OrganizationCreateDTO, OrganizationUpdateDTO, Integer>,
         GenericGLService<OrganizationGetDTO, Integer, OrganizationCriteria>, BaseService {
+
+    int totalPages();
+
 }

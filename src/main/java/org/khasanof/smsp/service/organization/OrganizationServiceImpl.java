@@ -1,6 +1,7 @@
 package org.khasanof.smsp.service.organization;
 
 import org.khasanof.smsp.criteria.organization.OrganizationCriteria;
+import org.khasanof.smsp.dto.cloudinary.CloudinaryGetDTO;
 import org.khasanof.smsp.dto.organization.OrganizationCreateDTO;
 import org.khasanof.smsp.dto.organization.OrganizationGetDTO;
 import org.khasanof.smsp.dto.organization.OrganizationUpdateDTO;
@@ -8,9 +9,8 @@ import org.khasanof.smsp.entity.organization.OrganizationEntity;
 import org.khasanof.smsp.mapper.organization.OrganizationMapper;
 import org.khasanof.smsp.repository.organization.OrganizationRepository;
 import org.khasanof.smsp.service.AbstractService;
-import org.springframework.data.domain.Page;
+import org.khasanof.smsp.service.cloudinary.CloudinaryService;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,17 +27,23 @@ import java.util.List;
 @Service
 public class OrganizationServiceImpl extends AbstractService<OrganizationRepository, OrganizationMapper> implements OrganizationService {
 
-    public OrganizationServiceImpl(OrganizationRepository repository, OrganizationMapper mapper) {
+    private final CloudinaryService cloudinaryService;
+
+    public OrganizationServiceImpl(OrganizationRepository repository, OrganizationMapper mapper, CloudinaryService cloudinaryService) {
         super(repository, mapper);
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
     public void create(OrganizationCreateDTO dto) {
+        CloudinaryGetDTO upload = cloudinaryService.upload(dto.getFile());
         boolean exists = repository.existsByEmail(dto.getEmail());
-        if (!exists) {
+        if (exists) {
             throw new RuntimeException("This Email Organization Already Created!");
         }
-        repository.save(mapper.toCreateDTO(dto));
+        OrganizationEntity entity = mapper.toCreateDTO(dto);
+        entity.setLogoPath(upload.getUrl());
+        repository.save(entity);
     }
 
     @Override
@@ -68,5 +74,11 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
         OrganizationGetDTO dto = mapper.fromGetDTO(entity);
         dto.setStatusLabel(entity.getStatus().getLabel());
         return dto;
+    }
+
+    @Override
+    public int totalPages() {
+        return repository.findAll(PageRequest.of(0, 10))
+                .getTotalPages();
     }
 }

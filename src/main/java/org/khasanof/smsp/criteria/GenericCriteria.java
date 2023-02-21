@@ -1,7 +1,6 @@
 package org.khasanof.smsp.criteria;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.domain.Sort;
 
 import java.util.Objects;
@@ -17,6 +16,9 @@ import java.util.Objects;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Setter
+@Getter
 public class GenericCriteria implements BaseCriteria {
 
     private Integer size;

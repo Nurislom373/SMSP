@@ -1,5 +1,6 @@
 package org.khasanof.smsp.criteria.organization;
 
+import lombok.*;
 import org.khasanof.smsp.criteria.GenericCriteria;
 import org.springframework.data.domain.Sort;
 
@@ -12,13 +13,9 @@ import org.springframework.data.domain.Sort;
  * <br/>
  * Package: org.khasanof.smsp.criteria.organization
  */
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
 public class OrganizationCriteria extends GenericCriteria {
-
-    public OrganizationCriteria(Integer size, Integer page, Sort.Direction direction) {
-        super(size, page, direction);
-    }
-
-    public OrganizationCriteria() {
-        super();
-    }
 }

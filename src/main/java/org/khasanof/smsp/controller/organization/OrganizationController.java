@@ -7,7 +7,10 @@ import org.khasanof.smsp.dto.organization.OrganizationCreateDTO;
 import org.khasanof.smsp.dto.organization.OrganizationGetDTO;
 import org.khasanof.smsp.service.organization.OrganizationService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,19 +37,23 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView page(@Valid OrganizationCriteria criteria) {
+        System.out.println("criteria = " + criteria);
         ModelAndView modelAndView = new ModelAndView();
+        int totalPages = service.totalPages();
+        System.out.println("totalPages = " + totalPages);
         modelAndView.setViewName("organizations/organizations-basic");
         modelAndView.addObject("organizations", service.list(criteria));
         modelAndView.addObject("currentPage", criteria.getPage());
         modelAndView.addObject("elementSize", criteria.getSize());
+        modelAndView.addObject("totalPages", totalPages);
         return modelAndView;
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView create(@Valid @RequestBody OrganizationCreateDTO dto) {
+    public ModelAndView create(@ModelAttribute OrganizationCreateDTO dto) {
         service.create(dto);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("organizations/organizations-basic");
+        modelAndView.setViewName("redirect:/organizations/");
         modelAndView.addObject("organizations", service.list(new OrganizationCriteria()));
         return modelAndView;
     }

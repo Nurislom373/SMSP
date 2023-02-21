@@ -127,16 +127,16 @@
 
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
-                <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                <li class="menu-item active">
+                    <a th:href="@{/}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
                 </li>
 
                 <!-- Organizations -->
-                <li class="menu-item active">
-                    <a th:href="@{/organizations}" class="menu-link">
+                <li class="menu-item">
+                    <a th:href="@{/organizations/}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-layout"></i>
                         <div data-i18n="Layouts">Organizations</div>
                     </a>
@@ -351,8 +351,7 @@
                 </li>
 
                 <!-- Forms & Tables -->
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span>
-                </li>
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
                 <!-- Forms -->
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -442,12 +441,9 @@
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item d-flex align-items-center">
                             <i class="bx bx-search fs-4 lh-0"></i>
-                            <input
-                                    type="text"
-                                    class="form-control border-0 shadow-none"
-                                    placeholder="Search..."
-                                    aria-label="Search..."
-                            />
+                            <input type="text" class="form-control border-0 shadow-none"
+                                    placeholder="Search..." aria-label="Search..." data-bs-toggle="offcanvas"
+                                   data-bs-target="#offcanvasScroll" aria-controls="offcanvasScroll"/>
                         </div>
                     </div>
                     <!-- /Search -->
@@ -546,7 +542,7 @@
                                 <tbody class="table-border-bottom-0">
                                 <tr th:each="organization : ${organizations}">
                                     <td th:text="${organization.id}"></td>
-                                    <td><img th:src="@{${organization.logoPath}}" width="20%" alt="Avatar"
+                                    <td><img th:src="@{${organization.logoPath}}" width="20%" height="20%" alt="Avatar"
                                              class="rounded-circle"/></td>
                                     <td><strong th:text="${organization.name}"></strong></td>
                                     <td th:text="${organization.email}"></td>
@@ -563,8 +559,8 @@
                                                 <a class="dropdown-item" href="javascript:void(0);"
                                                 ><i class="bx bx-edit-alt me-2"></i> Edit</a
                                                 >
-                                                <a class="dropdown-item" href="javascript:void(0);"
-                                                ><i class="bx bx-trash me-2"></i> Delete</a
+                                                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                   data-bs-target="#modalToggle"><i class="bx bx-trash me-2"></i> Delete</a
                                                 >
                                             </div>
                                         </div>
@@ -582,39 +578,28 @@
                                         <nav aria-label="Page navigation">
                                             <ul class="pagination">
                                                 <li class="page-item first">
-                                                    <a class="page-link" href="javascript:void(0);"
-                                                    ><i class="tf-icon bx bx-chevrons-left"></i
-                                                    ></a>
+                                                    <a class="page-link" th:href="@{/organizations/(page=0)}"><i
+                                                            class="tf-icon bx bx-chevrons-left"></i></a>
                                                 </li>
                                                 <li class="page-item prev">
-                                                    <a class="page-link" href="javascript:void(0);"
-                                                    ><i class="tf-icon bx bx-chevron-left"></i
-                                                    ></a>
+                                                    <a class="page-link" th:if="${currentPage >= 1}"
+                                                       th:href="@{/organizations/(page=${currentPage - 1})}"><i
+                                                            class="tf-icon bx bx-chevron-left"></i></a>
                                                 </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0);">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0);">2</a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="javascript:void(0);">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0);">4</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0);">5</a>
+                                                <li class="page-item"
+                                                    th:each="num : ${#numbers.sequence(1, totalPages)}">
+                                                    <a class="page-link" th:href="@{/organizations/(page=${num - 1})}"
+                                                       th:text="${num}"></a>
                                                 </li>
                                                 <li class="page-item next">
-                                                    <a class="page-link" href="javascript:void(0);"
-                                                    ><i class="tf-icon bx bx-chevron-right"></i
-                                                    ></a>
+                                                    <a class="page-link" th:if="${currentPage < (totalPages - 1)}"
+                                                       th:href="@{/organizations/(page=${currentPage + 1})}"><i
+                                                            class="tf-icon bx bx-chevron-right"></i></a>
                                                 </li>
                                                 <li class="page-item last">
-                                                    <a class="page-link" href="javascript:void(0);"
-                                                    ><i class="tf-icon bx bx-chevrons-right"></i
-                                                    ></a>
+                                                    <a class="page-link"
+                                                       th:href="@{/organizations/(page=${totalPages - 1})}"><i
+                                                            class="tf-icon bx bx-chevrons-right"></i></a>
                                                 </li>
                                             </ul>
                                         </nav>
@@ -640,8 +625,119 @@
 </div>
 
 <div class="add-now">
-    <a th:href="@{/organization/add}" target="_blank"
-       class="btn btn-primary btn-add-now">Add</a>
+    <button data-bs-toggle="modal" data-bs-target="#modalTop" class="btn btn-primary btn-add-now">Add</button>
+
+    <!-- Slide from Top Modal -->
+    <div class="col-lg-4 col-md-6">
+        <div class="mt-3">
+
+            <!-- Modal -->
+            <div class="modal modal-top fade" id="modalTop" tabindex="-1">
+                <div class="modal-dialog">
+                    <form enctype="multipart/form-data" class="modal-content" action="/organizations/create" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTopTitle">Create Organization</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col mb-3">
+                                <label for="nameSlideTop" class="form-label">Name</label>
+                                <input type="text" id="nameSlideTop" name="name" class="form-control" placeholder="Enter Name"/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="emailSlideTop" class="form-label">Email</label>
+                                <input type="email" id="emailSlideTop" name="email" class="form-control" placeholder="xxxx@xxx.xx"/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="defaultSelect" class="form-label">Choose Status</label>
+                                <select id="defaultSelect" class="form-select" name="status">
+                                    <option value="ACTIVE" selected>ACTIVE</option>
+                                    <option value="BLOCKED">BLOCKED</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="formFile" class="form-label">Email</label>
+                                <input type="file" name="file" id="formFile" class="form-control" accept="image/*"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="mt-3">
+
+            <!-- Modal 1-->
+            <div class="modal fade"
+                    id="modalToggle"
+                    aria-labelledby="modalToggleLabel"
+                    tabindex="-1"
+                    style="display: none"
+                    aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalToggleLabel">Delete Organization</h5>
+                            <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">Are you sure delete Organization? Organization and all data will delete!</div>
+                        <div class="modal-footer">
+                            <button
+                                    class="btn btn-primary">
+                                Open second modal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal 2-->
+            <div
+                    class="modal fade"
+                    id="modalToggle2"
+                    aria-hidden="true"
+                    aria-labelledby="modalToggleLabel2"
+                    tabindex="-1"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalToggleLabel2">Modal 2</h5>
+                            <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">Hide this modal and show the first with the button below.</div>
+                        <div class="modal-footer">
+                            <button
+                                    class="btn btn-primary"
+                                    data-bs-target="#modalToggle"
+                                    data-bs-toggle="modal"
+                                    data-bs-dismiss="modal"
+                            >
+                                Back to first
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- / Layout wrapper -->
 
