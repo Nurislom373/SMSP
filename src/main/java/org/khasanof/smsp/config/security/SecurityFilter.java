@@ -2,8 +2,12 @@ package org.khasanof.smsp.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.SecurityBuilder;
+import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,11 +32,11 @@ import java.util.concurrent.TimeUnit;
 public class SecurityFilter {
 
     public static final String[] WHITE_LIST = {
-            "/", "/auth/login/**", "/auth/register/**", "/blog/**", "/news/**"
+            "/auth/login/**"
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {
-            "/img/**", "/css/**", "/js/**", "/fonts/**", "/error"
+            "/img/**", "/css/**", "/js/**", "/fonts/**", "/error", "/vendor/**"
     };
 
     @Bean
@@ -84,5 +88,10 @@ public class SecurityFilter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(WHITE_LIST_RESOURCES);
     }
 }

@@ -17,7 +17,7 @@ public class AuthController {
 
     @GetMapping(value = "/auth/login")
     public String loginPage() {
-        return "auth/Login";
+        return "auth/auth-login-basic";
     }
 
 }
