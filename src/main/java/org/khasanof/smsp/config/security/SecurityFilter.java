@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class SecurityFilter {
 
     public static final String[] WHITE_LIST = {
-            "/auth/login/**"
+            "/auth/login/**", "/", "/organizations/**"
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {

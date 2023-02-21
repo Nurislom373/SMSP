@@ -1,0 +1,21 @@
+
+.org-btn-add {
+    display: flex;
+    float: left;
+}
+
+.add-now .btn-add-now {
+    position: fixed;
+    bottom: 3rem;
+    right: 1.625rem;
+    z-index: 999999;
+    box-shadow: 0 1px 20px 1px #696cff;
+}
+.add-now .btn-add-now:hover {
+    box-shadow: none;
+}
+
+.org-content-center {
+    display: flex;
+    justify-content: center;
+}

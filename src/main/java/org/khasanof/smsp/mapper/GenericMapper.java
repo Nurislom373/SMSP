@@ -19,7 +19,6 @@ public interface GenericMapper<
         CD extends BaseDTO,
         UD extends GenericDTO,
         GD extends GenericDTO,
-        DD extends GenericDTO,
         E extends BaseEntity> extends BaseMapper {
     E toCreateDTO(CD DTO);
 
@@ -36,8 +35,4 @@ public interface GenericMapper<
     List<E> toGetListDTO(List<GD> DTO);
 
     List<GD> fromGetListDTO(List<E> entity);
-
-    E toDetailDTO(DD DTO);
-
-    DD fromDetailDTO(E entity);
 }
