@@ -36,7 +36,7 @@ public class AuthUserEntity extends Auditable {
     @Enumerated(EnumType.STRING)
     private AuthUserStatus status;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private AuthUserRole role;
 
     @Enumerated(EnumType.STRING)

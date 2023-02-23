@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<aside id="layout-menu" th:fragment="sidebar" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" th:fragment="sidebar(var1)" class="layout-menu menu-vertical menu bg-menu-theme">
 
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
@@ -76,48 +76,34 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+
         <!-- Dashboard -->
-        <li class="menu-item">
+        <li class="menu-item" th:classappend="${var1 == 'dashboard'} ? ' active' : ' '">
             <a th:href="@{/}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
 
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Management</span>
+        </li>
+
         <!-- Organizations -->
-        <li class="menu-item">
+        <li class="menu-item" th:classappend="${var1 == 'organization'} ? ' active' : ' '">
             <a th:href="@{/organizations/}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Organizations</div>
             </a>
         </li>
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Management</span>
-        </li>
-        <li class="menu-item">
-            <a th:href="@{/users/}" class="menu-link menu-toggle">
+        <li class="menu-item" th:classappend="${var1 == 'users'} ? ' active' : ' '">
+            <a th:href="@{/users/}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Users</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">Account</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div data-i18n="Notifications">Notifications</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div data-i18n="Connections">Connections</div>
-                    </a>
-                </li>
-            </ul>
         </li>
+
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>

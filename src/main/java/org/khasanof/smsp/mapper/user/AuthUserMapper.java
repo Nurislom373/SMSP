@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Mapper(componentModel = "spring")
-public interface UserMapper extends GenericMapper<AuthUserCreateDTO, AuthUserUpdateDTO, AuthUserGetDTO, AuthUserEntity> {
+public interface AuthUserMapper extends GenericMapper<AuthUserCreateDTO, AuthUserUpdateDTO, AuthUserGetDTO, AuthUserEntity> {
 
     AuthUserEntity toDetailDTO(AuthUserDetailDTO DTO);
 

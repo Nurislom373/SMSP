@@ -36,15 +36,12 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView page(@Valid OrganizationCriteria criteria) {
-        System.out.println("criteria = " + criteria);
         ModelAndView modelAndView = new ModelAndView();
-        int totalPages = service.totalPages();
-        System.out.println("totalPages = " + totalPages);
         modelAndView.setViewName("organizations/organizations-basic");
         modelAndView.addObject("organizations", service.list(criteria));
         modelAndView.addObject("currentPage", criteria.getPage());
         modelAndView.addObject("elementSize", criteria.getSize());
-        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalPages", service.totalPages());
         return modelAndView;
     }
 
@@ -69,6 +66,12 @@ public class OrganizationController extends AbstractController<OrganizationServi
     @ResponseBody
     public OrganizationGetDTO get(@PathVariable Integer id) {
         return service.get(id);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public List<OrganizationGetDTO> list() {
+        return service.getAll();
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

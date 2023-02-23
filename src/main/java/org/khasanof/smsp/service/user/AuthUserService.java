@@ -5,6 +5,7 @@ import org.khasanof.smsp.dto.user.AuthUserCreateDTO;
 import org.khasanof.smsp.dto.user.AuthUserDetailDTO;
 import org.khasanof.smsp.dto.user.AuthUserGetDTO;
 import org.khasanof.smsp.dto.user.AuthUserUpdateDTO;
+import org.khasanof.smsp.service.BaseService;
 import org.khasanof.smsp.service.GenericCUDService;
 import org.khasanof.smsp.service.GenericGLService;
 
@@ -18,7 +19,9 @@ import org.khasanof.smsp.service.GenericGLService;
  * Package: org.khasanof.smsp.service
  */
 public interface AuthUserService extends GenericCUDService<AuthUserCreateDTO, AuthUserUpdateDTO, Integer>,
-        GenericGLService<AuthUserGetDTO, Integer, AuthUserCriteria> {
+        GenericGLService<AuthUserGetDTO, Integer, AuthUserCriteria>, BaseService {
+
+    int totalPages();
 
     AuthUserDetailDTO detail(Integer id);
 

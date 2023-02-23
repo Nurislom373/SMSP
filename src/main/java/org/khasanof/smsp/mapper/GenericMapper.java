@@ -20,6 +20,7 @@ public interface GenericMapper<
         UD extends GenericDTO,
         GD extends GenericDTO,
         E extends BaseEntity> extends BaseMapper {
+
     E toCreateDTO(CD DTO);
 
     CD fromCreateDTO(E entity);

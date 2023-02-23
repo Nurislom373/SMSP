@@ -4,9 +4,12 @@ import org.khasanof.smsp.criteria.organization.OrganizationCriteria;
 import org.khasanof.smsp.dto.organization.OrganizationCreateDTO;
 import org.khasanof.smsp.dto.organization.OrganizationGetDTO;
 import org.khasanof.smsp.dto.organization.OrganizationUpdateDTO;
+import org.khasanof.smsp.entity.organization.OrganizationEntity;
 import org.khasanof.smsp.service.BaseService;
 import org.khasanof.smsp.service.GenericCUDService;
 import org.khasanof.smsp.service.GenericGLService;
+
+import java.util.List;
 
 /**
  * Author: Nurislom
@@ -22,4 +25,7 @@ public interface OrganizationService extends GenericCUDService<OrganizationCreat
 
     int totalPages();
 
+    OrganizationEntity getEntity(Integer id);
+
+    List<OrganizationGetDTO> getAll();
 }

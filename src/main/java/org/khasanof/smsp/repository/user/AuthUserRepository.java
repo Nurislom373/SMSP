@@ -1,6 +1,7 @@
 package org.khasanof.smsp.repository.user;
 
 import org.khasanof.smsp.entity.auth_user.AuthUserEntity;
+import org.khasanof.smsp.repository.BaseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,5 @@ import org.springframework.stereotype.Repository;
  * Package: org.khasanof.smsp.repository.user
  */
 @Repository
-public interface UserRepository extends JpaRepository<AuthUserEntity, Integer> {
+public interface AuthUserRepository extends JpaRepository<AuthUserEntity, Integer>, BaseRepository {
 }

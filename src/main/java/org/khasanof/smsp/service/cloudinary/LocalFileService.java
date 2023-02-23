@@ -1,5 +1,6 @@
 package org.khasanof.smsp.service.cloudinary;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Package: org.khasanof.smsp.service.cloudinary
  */
 @Service
+@EnableScheduling
 public class LocalFileService {
 
     private ConcurrentHashMap<String, Boolean> concurrentFiles = new ConcurrentHashMap<>();

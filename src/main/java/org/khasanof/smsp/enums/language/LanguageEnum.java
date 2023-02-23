@@ -1,5 +1,10 @@
 package org.khasanof.smsp.enums.language;
 
+import org.khasanof.smsp.enums.organization.OrganizationStatusEnum;
+
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Author: Nurislom
  * <br/>
@@ -13,4 +18,9 @@ public enum LanguageEnum {
     UZBEK,
     RUSSIA,
     ENGLISH;
+
+    public static LanguageEnum findAny() {
+        return Arrays.asList(values())
+                .get(new Random().nextInt(values().length));
+    }
 }

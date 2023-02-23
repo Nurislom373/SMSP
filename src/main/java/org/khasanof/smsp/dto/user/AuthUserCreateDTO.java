@@ -5,6 +5,7 @@ import lombok.*;
 import org.khasanof.smsp.dto.BaseDTO;
 import org.khasanof.smsp.enums.auth_user.AuthUserRole;
 import org.khasanof.smsp.enums.auth_user.AuthUserStatus;
+import org.khasanof.smsp.enums.language.LanguageEnum;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -45,4 +46,6 @@ public class AuthUserCreateDTO implements BaseDTO {
     private String phoneNumber;
     @NotNull
     private AuthUserRole role;
+    @NotNull
+    private LanguageEnum language;
 }

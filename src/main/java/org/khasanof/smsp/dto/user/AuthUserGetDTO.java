@@ -2,7 +2,10 @@ package org.khasanof.smsp.dto.user;
 
 import lombok.*;
 import org.khasanof.smsp.dto.GenericDTO;
+import org.khasanof.smsp.enums.auth_user.AuthUserRole;
 import org.khasanof.smsp.enums.auth_user.AuthUserStatus;
+
+import java.time.LocalDateTime;
 
 /**
  * Author: Nurislom
@@ -25,7 +28,10 @@ public class AuthUserGetDTO extends GenericDTO {
     private String imagePath;
     private String language;
     private String phoneNumber;
-    private String role;
+    private AuthUserRole role;
+    private String roleLabel;
     private String organizationName;
     private AuthUserStatus status;
+    private String statusLabel;
+    private LocalDateTime createdAt;
 }

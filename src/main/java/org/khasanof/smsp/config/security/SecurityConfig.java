@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class SecurityConfig {
 
     public static final String[] WHITE_LIST = {
-            "/auth/login/**", "/", "/organizations/**"
+            "/auth/login/**", "/", "/organizations/**", "/users/**"
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {

@@ -6,12 +6,12 @@ import org.khasanof.smsp.dto.organization.OrganizationCreateDTO;
 import org.khasanof.smsp.dto.organization.OrganizationGetDTO;
 import org.khasanof.smsp.dto.organization.OrganizationUpdateDTO;
 import org.khasanof.smsp.entity.organization.OrganizationEntity;
-import org.khasanof.smsp.exception.exceptions.InvalidValidationException;
 import org.khasanof.smsp.exception.exceptions.NotFoundException;
 import org.khasanof.smsp.mapper.organization.OrganizationMapper;
 import org.khasanof.smsp.repository.organization.OrganizationRepository;
 import org.khasanof.smsp.service.AbstractService;
 import org.khasanof.smsp.service.cloudinary.CloudinaryService;
+import org.khasanof.smsp.utils.BaseUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -52,25 +52,28 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     @Override
     public void update(OrganizationUpdateDTO dto) {
-        validOnId(dto.getId());
-
-        boolean fileNonNull = Objects.nonNull(dto.getFile());
+        BaseUtils.validId(dto.getId());
+        boolean empty = dto.getFile().isEmpty();
         CloudinaryGetDTO upload = null;
 
-        if (fileNonNull) {
+        if (!empty) {
             upload = cloudinaryService.upload(dto.getFile());
         }
 
         OrganizationEntity organization = repository.findById(dto.getId())
                 .orElseThrow(() -> new NotFoundException("Organization Not Found"));
 
-        swapDtoToEntity(organization, dto, fileNonNull, upload.getUrl());
+        if (Objects.nonNull(upload)) {
+            organization.setLogoPath(upload.getUrl());
+        }
+
+        swapDtoToEntity(organization, dto);
         repository.save(organization);
     }
 
     @Override
     public void delete(Integer id) {
-        validOnId(id);
+        BaseUtils.validId(id);
         if (!repository.existsById(id)) {
             throw new NotFoundException("Organization not found");
         }
@@ -79,7 +82,7 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     @Override
     public OrganizationGetDTO get(Integer id) {
-        validOnId(id);
+        BaseUtils.validId(id);
         return mapper.fromGetDTO(
                 repository.findById(id).orElseThrow(() -> {
                     throw new NotFoundException("Organization not found");
@@ -108,21 +111,21 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
                 .getTotalPages();
     }
 
-    private void swapDtoToEntity(OrganizationEntity entity, OrganizationUpdateDTO dto, boolean fileNonNull, String url) {
-        if (!fileNonNull) {
-            BeanUtils.copyProperties(dto, entity, "id", "file");
-        } else {
-            entity.setLogoPath(url);
-            BeanUtils.copyProperties(dto, entity, "id", "file");
-        }
+    @Override
+    public OrganizationEntity getEntity(Integer id) {
+        BaseUtils.validId(id);
+        return repository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Organization Not Found");
+                });
     }
 
-    private void validOnId(Integer id) {
-        if (id == null || id < 1) {
-            throw new InvalidValidationException("Invalid id!");
-        }
+    @Override
+    public List<OrganizationGetDTO> getAll() {
+        return repository.findAll().stream().map(this::setEntityToGD).toList();
     }
 
-    private void validOnUpdate(OrganizationEntity entity, OrganizationUpdateDTO dto) {
+    private void swapDtoToEntity(OrganizationEntity entity, OrganizationUpdateDTO dto) {
+        BeanUtils.copyProperties(dto, entity, "id", "file");
     }
 }
