@@ -177,8 +177,8 @@
                                 </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                <tr th:each="user : ${users}">
-                                    <td th:text="${user.id}"></td>
+                                <tr th:each="user, iterStat : ${users}">
+                                    <td th:text="${iterStat.count}"></td>
                                     <td><img th:src="@{${user.imagePath}}" width="70%" alt="Avatar"
                                              class="rounded-circle"/></td>
                                     <td><strong th:text="${user.firstName}"></strong></td>
