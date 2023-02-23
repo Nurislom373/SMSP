@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.khasanof.smsp.dto.GenericDTO;
 import org.khasanof.smsp.enums.organization.OrganizationStatusEnum;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Author: Nurislom
@@ -34,8 +35,7 @@ public class OrganizationUpdateDTO extends GenericDTO {
     @Email
     private String email;
 
-    @NotBlank
-    private String logoPath;
+    private MultipartFile file;
 
     @NotNull
     private OrganizationStatusEnum status;

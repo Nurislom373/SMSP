@@ -2,10 +2,8 @@ package org.khasanof.smsp.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.SecurityBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
@@ -29,7 +27,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityFilter {
+@EnableMethodSecurity
+public class SecurityConfig {
 
     public static final String[] WHITE_LIST = {
             "/auth/login/**", "/", "/organizations/**"
@@ -60,10 +59,10 @@ public class SecurityFilter {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
-                .authorizeRequests(auth ->
-                        auth.requestMatchers(WHITE_LIST).permitAll()
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(auth -> auth.requestMatchers(WHITE_LIST)
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
                 .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer.permitAll()
                                 .loginPage("/auth/login")

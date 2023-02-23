@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Length;
 import org.khasanof.smsp.entity.Auditable;
+import org.khasanof.smsp.entity.organization.OrganizationEntity;
+import org.khasanof.smsp.enums.auth_user.AuthUserRole;
 import org.khasanof.smsp.enums.auth_user.AuthUserStatus;
 import org.khasanof.smsp.enums.language.LanguageEnum;
 
@@ -34,6 +36,9 @@ public class AuthUserEntity extends Auditable {
     @Enumerated(EnumType.STRING)
     private AuthUserStatus status;
 
+    @Enumerated
+    private AuthUserRole role;
+
     @Enumerated(EnumType.STRING)
     private LanguageEnum language;
 
@@ -48,4 +53,8 @@ public class AuthUserEntity extends Auditable {
 
     @Column(name = "image_path", length = Length.LONG16)
     private String imagePath;
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id", foreignKey = @ForeignKey(name = "ORGANIZATION_ID_FK"))
+    private OrganizationEntity organization;
 }
