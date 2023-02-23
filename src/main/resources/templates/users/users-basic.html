@@ -199,9 +199,9 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" th:onclick="newGet([[${user.id}]])" data-bs-toggle="modal"
+                                                <a class="dropdown-item" th:onclick="setUpdateForm([[${user.id}]])" data-bs-toggle="modal"
                                                    data-bs-target="#update"><i class="bx bx-edit-alt me-2"></i>Edit</a>
-                                                <a class="dropdown-item" th:onclick="deleteOrganization([[${user.id}]])"><i class="bx bx-trash me-2"></i> Delete</a>
+                                                <a class="dropdown-item" th:onclick="deleteUser([[${user.id}]])"><i class="bx bx-trash me-2"></i> Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -341,30 +341,63 @@
             <!-- Modal Update -->
             <div class="modal modal-top fade" id="update" tabindex="-1">
                 <div class="modal-dialog">
-                    <form enctype="multipart/form-data" class="modal-content" action="/organizations/update" method="post">
-                        <input type="hidden" id="idUpdate" name="id">
+                    <form enctype="multipart/form-data" class="modal-content" action="/users/update" method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modalUpdateTitle">Update Organization</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <input type="hidden" name="id" id="updateId">
                             <div class="col mb-3">
-                                <label for="nameSlideUpdate" class="form-label">Name</label>
-                                <input type="text" id="nameSlideUpdate" name="name" class="form-control" placeholder="Enter Name"/>
+                                <label for="organizationSelectUpdate" class="form-label">Choose Organization</label>
+                                <select id="organizationSelectUpdate" class="form-select" name="organizationId"></select>
+                            </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col mb-0">
+                                    <label for="firstNameForUpdate" class="form-label">First Name</label>
+                                    <input type="text" id="firstNameForUpdate" name="firstName" class="form-control" placeholder="Enter First Name"/>
+                                </div>
+                                <div class="col mb-0">
+                                    <label for="lastNameForUpdate" class="form-label">Last Name</label>
+                                    <input type="text" id="lastNameForUpdate" name="lastName" class="form-control" placeholder="Enter Last Name"/>
+                                </div>
                             </div>
                             <div class="col mb-3">
-                                <label for="emailSlideUpdate" class="form-label">Email</label>
-                                <input type="email" id="emailSlideUpdate" name="email" class="form-control" placeholder="xxxx@xxx.xx"/>
+                                <label for="emailForUpdate" class="form-label">Email</label>
+                                <input type="email" id="emailForUpdate" name="email" class="form-control" placeholder="xxxx@xxx.xx"/>
                             </div>
                             <div class="col mb-3">
-                                <label for="defaultSelectUpdate" class="form-label">Choose Status</label>
-                                <select id="defaultSelectUpdate" class="form-select" name="status">
-                                    <option value="ACTIVE" selected>ACTIVE</option>
+                                <label for="phoneNumberForUpdate" class="form-label">Phone Number</label>
+                                <input type="text" id="phoneNumberForUpdate" name="phoneNumber" class="form-control" placeholder="+998 9* *** ** *3"/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="statusSelectedUpdate" class="form-label">Choose Status</label>
+                                <select id="statusSelectedUpdate" class="form-select" name="status">
+                                    <option value="ACTIVE">ACTIVE</option>
                                     <option value="BLOCKED">BLOCKED</option>
+                                    <option value="NO_ACTIVE">NO_ACTIVE</option>
                                 </select>
                             </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col mb-0">
+                                    <label for="roleSelectedUpdate" class="form-label">Choose Role</label>
+                                    <select id="roleSelectedUpdate" class="form-select" name="role">
+                                        <option value="ADMIN" selected>ADMIN</option>
+                                        <option value="TEACHER">TEACHER</option>
+                                        <option value="SUPER_ADMIN" disabled>SUPER_ADMIN</option>
+                                    </select>
+                                </div>
+                                <div class="col mb-0">
+                                    <label for="langSelectedUpdate" class="form-label">Choose Language</label>
+                                    <select id="langSelectedUpdate" class="form-select" name="language">
+                                        <option value="UZBEK" selected>UZBEK</option>
+                                        <option value="ENGLISH">ENGLISH</option>
+                                        <option value="RUSSIA">RUSSIA</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col mb-3">
-                                <label for="formFileUpdate" class="form-label">Email</label>
+                                <label for="formFileUpdate" class="form-label">Choose File</label>
                                 <input type="file" name="file" id="formFileUpdate" class="form-control" accept="image/*"/>
                             </div>
                         </div>

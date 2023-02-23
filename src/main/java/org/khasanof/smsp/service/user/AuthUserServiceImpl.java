@@ -17,6 +17,7 @@ import org.khasanof.smsp.service.AbstractService;
 import org.khasanof.smsp.service.cloudinary.CloudinaryService;
 import org.khasanof.smsp.service.organization.OrganizationService;
 import org.khasanof.smsp.utils.BaseUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,24 @@ public class AuthUserServiceImpl extends AbstractService<AuthUserRepository, Aut
 
     @Override
     public void update(AuthUserUpdateDTO dto) {
+        BaseUtils.validId(dto.getId());
+        CloudinaryGetDTO cloudinaryGetDTO = null;
 
+        AuthUserEntity entity = repository.findById(dto.getId())
+                .orElseThrow(() -> new NotFoundException("AuthUser Not Found"));
+
+        if (!entity.getOrganization().getId().equals(dto.getId())) {
+            OrganizationEntity organization = organizationService.getEntity(dto.getId());
+            entity.setOrganization(organization);
+        }
+        if (!dto.getFile().isEmpty()) {
+            cloudinaryGetDTO = cloudinaryService.upload(dto.getFile());
+        }
+        swapDtoEntity(dto, entity);
+        if (Objects.nonNull(cloudinaryGetDTO)) {
+            entity.setImagePath(cloudinaryGetDTO.getUrl());
+        }
+        repository.save(entity);
     }
 
     @Override
@@ -117,5 +135,9 @@ public class AuthUserServiceImpl extends AbstractService<AuthUserRepository, Aut
         authUserGetDTO.setStatusLabel(entity.getStatus().getLabel());
         authUserGetDTO.setCreatedAt(entity.getCreatedAt());
         return authUserGetDTO;
+    }
+
+    private void swapDtoEntity(AuthUserUpdateDTO dto, AuthUserEntity entity) {
+        BeanUtils.copyProperties(dto, entity, "id");
     }
 }

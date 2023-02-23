@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.khasanof.smsp.controller.AbstractController;
 import org.khasanof.smsp.criteria.user.AuthUserCriteria;
 import org.khasanof.smsp.dto.user.AuthUserCreateDTO;
+import org.khasanof.smsp.dto.user.AuthUserGetDTO;
 import org.khasanof.smsp.dto.user.AuthUserUpdateDTO;
 import org.khasanof.smsp.service.user.AuthUserService;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,12 @@ public class UserController extends AbstractController<AuthUserService> {
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         service.delete(id);
         return new ResponseEntity<>("Successfully Deleted - AuthUser", HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "get/{id}")
+    @ResponseBody
+    public ResponseEntity<AuthUserGetDTO> get(@PathVariable Integer id) {
+        return new ResponseEntity<>(service.get(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "update")
