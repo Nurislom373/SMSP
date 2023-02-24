@@ -6,6 +6,7 @@ import org.hibernate.Length;
 import org.khasanof.smsp.entity.Auditable;
 import org.khasanof.smsp.entity.auth_user.AuthUserEntity;
 import org.khasanof.smsp.entity.grade.GradeEntity;
+import org.khasanof.smsp.entity.organization.OrganizationEntity;
 import org.khasanof.smsp.enums.group.GroupStatusEnum;
 
 import java.time.LocalDateTime;
@@ -32,7 +33,11 @@ public class GroupEntity extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "grade_id", foreignKey = @ForeignKey(name = "GRADE_ID_FK"), nullable = false)
-    private GradeEntity gradeId;
+    private GradeEntity grade;
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id", foreignKey = @ForeignKey(name = "ORGANIZATION_ID_FK"), nullable = false)
+    private OrganizationEntity organization;
 
     @Enumerated(EnumType.STRING)
     private GroupStatusEnum status;

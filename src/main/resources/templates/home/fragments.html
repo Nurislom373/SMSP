@@ -103,13 +103,13 @@
                 <div data-i18n="Account Settings">Users</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item" th:classappend="${var1 == 'classes'} ? ' active' : ' '">
             <a th:href="@{/classes/}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Authentications">Classes</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item" th:classappend="${var1 == 'grades'} ? ' active' : ' '">
             <a th:href="@{/grades/}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Misc">Grades</div>

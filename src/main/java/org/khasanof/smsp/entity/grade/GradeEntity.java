@@ -1,10 +1,11 @@
 package org.khasanof.smsp.entity.grade;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.Length;
 import org.khasanof.smsp.entity.Auditable;
+import org.khasanof.smsp.entity.organization.OrganizationEntity;
+import org.khasanof.smsp.enums.grade.GradeStatus;
 
 /**
  * Author: Nurislom
@@ -27,6 +28,14 @@ public class GradeEntity extends Auditable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = Length.LONG)
     private String description;
+
+    @Enumerated
+    @Basic(optional = false)
+    private GradeStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id", foreignKey = @ForeignKey(name = "ORGANIZATION_ID_FK"))
+    private OrganizationEntity organization;
 }

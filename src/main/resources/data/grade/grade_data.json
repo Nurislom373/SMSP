@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "name": "Wikibox",
+    "description": "Congenital complete absence of unspecified upper limb"
+  },
+  {
+    "id": 2,
+    "name": "Blogtag",
+    "description": "Laceration of left Achilles tendon, initial encounter"
+  },
+  {
+    "id": 3,
+    "name": "Twimbo",
+    "description": "Injury of ulnar nerve at upper arm level, unsp arm, subs"
+  },
+  {
+    "id": 4,
+    "name": "Mudo",
+    "description": "Drug/chem diab w mild nonprlf diab rtnop w/o macular edema"
+  },
+  {
+    "id": 5,
+    "name": "Fliptune",
+    "description": "Laceration of flexor musc/fasc/tend thmb at forarm lv, subs"
+  },
+  {
+    "id": 6,
+    "name": "Youbridge",
+    "description": "Displaced oth extrartic fracture of left calcaneus, init"
+  },
+  {
+    "id": 7,
+    "name": "Topicware",
+    "description": "Unspecified physeal fracture of unspecified metatarsal"
+  },
+  {
+    "id": 8,
+    "name": "Oyoyo",
+    "description": "Unsp pedl cyclst inj in clsn w statnry object in traf, sqla"
+  },
+  {
+    "id": 9,
+    "name": "Twitterbridge",
+    "description": "Pathological fracture, left ulna, subs for fx w nonunion"
+  },
+  {
+    "id": 10,
+    "name": "Flashpoint",
+    "description": "Strain extn musc/fasc/tend l mid finger at wrs/hnd lv, init"
+  },
+  {
+    "id": 11,
+    "name": "Yombu",
+    "description": "Hairy cell leukemia, in remission"
+  },
+  {
+    "id": 12,
+    "name": "Gabtype",
+    "description": "LeFort II fracture, initial encounter for open fracture"
+  },
+  {
+    "id": 13,
+    "name": "Skinix",
+    "description": "Corrosion of unsp deg mult sites of unsp wrs/hnd, sequela"
+  },
+  {
+    "id": 14,
+    "name": "Rhybox",
+    "description": "Oth parlyt synd fol unsp cerebvasc disease aff left dom side"
+  },
+  {
+    "id": 15,
+    "name": "Abata",
+    "description": "Rifle, shotgun and larger firearm discharge, undet intent"
+  },
+  {
+    "id": 16,
+    "name": "Riffwire",
+    "description": "Pedl cyc driver inj pick-up truck, pk-up/van in traf, subs"
+  },
+  {
+    "id": 17,
+    "name": "Meetz",
+    "description": "Migraine with aura, intractable"
+  },
+  {
+    "id": 18,
+    "name": "Buzzdog",
+    "description": "Corrosion of unsp degree of male genital region, sequela"
+  },
+  {
+    "id": 19,
+    "name": "Plajo",
+    "description": "Smith's fracture of r radius, subs for clos fx w malunion"
+  },
+  {
+    "id": 20,
+    "name": "Demizz",
+    "description": "Oth enthesopathies of left lower limb, excluding foot"
+  },
+  {
+    "id": 21,
+    "name": "Gigazoom",
+    "description": "Unspecified dislocation of right knee"
+  },
+  {
+    "id": 22,
+    "name": "Janyx",
+    "description": "Nondisp fx of greater trochanter of r femr, 7thG"
+  },
+  {
+    "id": 23,
+    "name": "Nlounge",
+    "description": "Other complications of gastrostomy"
+  },
+  {
+    "id": 24,
+    "name": "Devpoint",
+    "description": "Unsp inj msl/fasc/tnd post grp at thi lev, right thigh, init"
+  },
+  {
+    "id": 25,
+    "name": "Quatz",
+    "description": "Cereb infrc d/t unsp occls or stenos of left mid cereb art"
+  },
+  {
+    "id": 26,
+    "name": "Skipfire",
+    "description": "Unsp injury of posterior tibial artery, left leg, init"
+  },
+  {
+    "id": 27,
+    "name": "Latz",
+    "description": "Chronic embolism and thrombosis of right femoral vein"
+  },
+  {
+    "id": 28,
+    "name": "Wikizz",
+    "description": "Corrosion of third degree of left palm, initial encounter"
+  },
+  {
+    "id": 29,
+    "name": "Voomm",
+    "description": "Strain of unspecified Achilles tendon, sequela"
+  },
+  {
+    "id": 30,
+    "name": "Oyoyo",
+    "description": "Nondisp fx of triquetrum bone, left wrist, init for clos fx"
+  },
+  {
+    "id": 31,
+    "name": "Buzzster",
+    "description": "Chronic duodenal ulcer without hemorrhage or perforation"
+  },
+  {
+    "id": 32,
+    "name": "Latz",
+    "description": "Partial traumatic metacarpophalangeal amputation of finger"
+  },
+  {
+    "id": 33,
+    "name": "Skibox",
+    "description": "Contus/lac r cereb w LOC w dth d/t oth cause bf consc, subs"
+  },
+  {
+    "id": 34,
+    "name": "Oyoyo",
+    "description": "Underdosing of antithrombotic drugs"
+  },
+  {
+    "id": 35,
+    "name": "Tavu",
+    "description": "35 weeks gestation of pregnancy"
+  },
+  {
+    "id": 36,
+    "name": "Rhybox",
+    "description": "Toxic effect of rodenticides, accidental, subs"
+  },
+  {
+    "id": 37,
+    "name": "Fivechat",
+    "description": "Unsp disp fx of surg neck of r humer, subs for fx w nonunion"
+  },
+  {
+    "id": 38,
+    "name": "Katz",
+    "description": "2-part disp fx of surg neck of l humerus, init for opn fx"
+  },
+  {
+    "id": 39,
+    "name": "Devbug",
+    "description": "Breakdown of implnt elec nstim of spinal cord lead"
+  },
+  {
+    "id": 40,
+    "name": "Avamm",
+    "description": "Nondisp bimalleol fx l low leg, 7thH"
+  },
+  {
+    "id": 41,
+    "name": "Yakidoo",
+    "description": "Toxic effect of tobacco and nicotine, self-harm, init"
+  },
+  {
+    "id": 42,
+    "name": "Aivee",
+    "description": "Nondisp longitud fx unsp patella, 7thP"
+  },
+  {
+    "id": 43,
+    "name": "Fivechat",
+    "description": "Contusion of right thumb with damage to nail, init encntr"
+  },
+  {
+    "id": 44,
+    "name": "Skidoo",
+    "description": "Juvenile arthritis, unspecified, unspecified elbow"
+  },
+  {
+    "id": 45,
+    "name": "Mymm",
+    "description": "Nondisp comminuted fx shaft of radius, right arm, sequela"
+  },
+  {
+    "id": 46,
+    "name": "Meejo",
+    "description": "Fusion of spine, thoracic region"
+  },
+  {
+    "id": 47,
+    "name": "Skinix",
+    "description": "Disp fx of r ulna styloid process, init for opn fx type I/2"
+  },
+  {
+    "id": 48,
+    "name": "Feedmix",
+    "description": "Unsp inj unsp musc/fasc/tend at wrs/hnd lv, l hand, sequela"
+  },
+  {
+    "id": 49,
+    "name": "Abata",
+    "description": "Male infertility, unspecified"
+  },
+  {
+    "id": 50,
+    "name": "Jaxspan",
+    "description": "Burn of second degree of left axilla, sequela"
+  }
+]
